@@ -1,4 +1,6 @@
-export default class Entity {
+import { IEntity } from '../shared/interfaces';
+
+export default class Entity implements IEntity {
   list(): void {}
 
   get(): void {}

@@ -11,7 +11,7 @@ export default merge(common, {
     },
     open: true,
     hot: true,
-    port: 3000,
+    port: process.env.FRONT_PORT,
     historyApiFallback: true,
     devMiddleware: {
       publicPath: '/',

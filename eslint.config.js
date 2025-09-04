@@ -41,7 +41,6 @@ export default [
       '@typescript-eslint/no-explicit-any': ['warn'], // Предупреждение при использовании any
       '@typescript-eslint/no-empty-interface': ['warn'], // Предупреждение при использовании пустых интерфейсов
       '@typescript-eslint/no-extra-non-null-assertion': ['error'], // Выключает использование дополнительных утверждений !
-      '@typescript-eslint/no-extraneous-class': ['error'], // Выключает использование классов только с статическими методами
       '@typescript-eslint/no-unused-vars': ['error'], // Выключает использование неиспользуемых переменных
       '@typescript-eslint/no-unnecessary-parameter-property-assignment': [
         'error',
