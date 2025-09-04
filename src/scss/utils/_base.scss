@@ -2,17 +2,34 @@
 body {
   box-sizing: border-box;
 
-  font-family: 'Roboto', sans-serif;
-  font-size: 23px;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 16px;
+  color: #333333;
 }
 
 .container {
-  max-width: 1200px;
-  padding: 0 15px;
   margin: 0 auto;
+  padding: 0 15px;
+  max-width: 1200px;
+}
+
+a,
+button,
+input {
+  transition: all 0.4s ease-in;
 }
 
 button {
-  transition: all 0.6s ease-in;
   cursor: pointer;
+}
+
+input {
+  &::-webkit-input-placeholder {
+    transition: opacity 0.2s ease-in;
+  }
+  &:hover {
+    &::-webkit-input-placeholder {
+      opacity: 0;
+    }
+  }
 }
