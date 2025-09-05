@@ -1,7 +1,8 @@
 import ChatAPI from './api/ChatAPI';
 import SessionManager from './managers/SessionManager';
-import RegisterModal from './Modal/RegisterModal';
 import { IChat } from './shared/interfaces';
+import ChatWindow from './ui/ChatWindow';
+import RegisterModal from './ui/RegisterModal';
 
 /**
  * Класс приложения чата
@@ -40,7 +41,13 @@ export default class Chat implements IChat {
     }
   }
 
-  bindToDOM(): void {}
+  bindToDOM(): void {
+    const chatContainer = this._container.querySelector('.container');
+    if (chatContainer instanceof HTMLDivElement) {
+      const chatWindow = new ChatWindow(chatContainer);
+      chatWindow.render();
+    }
+  }
 
   registerEvents(): void {}
 
