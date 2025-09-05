@@ -1,6 +1,7 @@
 import ChatAPI from './api/ChatAPI';
 import SessionManager from './managers/SessionManager';
 import { IChat } from './shared/interfaces';
+import { UserType } from './shared/types';
 import ChatWindow from './ui/ChatWindow';
 import RegisterModal from './ui/RegisterModal';
 
@@ -14,6 +15,8 @@ export default class Chat implements IChat {
   private _registerModal: RegisterModal;
   private _currentUser: { id: string; name: string } | null;
   private _serverUrl: string | undefined;
+  private _activeUsers: UserType[] = [];
+  private _chatWindow: ChatWindow | null = null;
 
   /**
    * Конструктор класса приложения чата
@@ -44,8 +47,8 @@ export default class Chat implements IChat {
   bindToDOM(): void {
     const chatContainer = this._container.querySelector('.container');
     if (chatContainer instanceof HTMLDivElement) {
-      const chatWindow = new ChatWindow(chatContainer);
-      chatWindow.render();
+      this._chatWindow = new ChatWindow(chatContainer);
+      this._chatWindow.render();
     }
   }
 
@@ -131,6 +134,14 @@ export default class Chat implements IChat {
   private _handleWebSocketMessage(data: any): void {
     if (Array.isArray(data)) {
       console.log('User list updated:', data);
+      this._activeUsers = data;
+
+      if (this._chatWindow) {
+        this._chatWindow.updateMembersList(
+          this._activeUsers,
+          this._currentUser
+        );
+      }
     } else if (data.type === 'send') {
       this.renderMessage();
     } else if (data.type === 'exit' && this._currentUser) {
